@@ -11,9 +11,13 @@
 
     <title>Что в кино</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <style type="text/css">
+          .card-img-overlay {
+              bottom: unset;
+          }
+      </style>
   </head>
 
   <body>
@@ -21,16 +25,54 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Что в кино</a>
+            <a style="font-size: 25px;" class="navbar-brand" href="/">Что в кино</a>
         </div>
       </div>
     </nav>
 
-    <div class="container">
-      <p>There Will Be Films</p>
-    </div><!-- /.container -->
+    <div class="container justify-content-md-center">
+        {% for group in grouped_movies %}
+            <div class="row">
+                <div class="card-deck">
+                    {% for movie in group %}
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <img src="{{ movie.imageUrl }}" width="400" class="card-img-top" alt="{{ movie.title }}">
+                                    <div class="card-img-overlay">
+                                        <div class="d-flex flex-column justify-content-center text-white">
+                                            <h5 class="card-title">{{ movie.title }}</h5>
+                                        <h6 class="card-text">{{ movie.shortDescription }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            Жанр: {{ movie.genre }} <br>
+                                            Режисер: {{ movie.director }} <br>
+                                            Время просмотра: {{ movie.countHours }} <br>
+                                            Рейтинг: {{ movie.rating }} <br>
+                                            Голосов: {{ movie.votes }}
+                                        </p>
+                                        <p class="card-text">{{ movie.description }}</p>
+                                        <p class="card-text">
+                                            <a href="{{ movie.movieUrl }}" role="button" class="btn btn-primary">Ссылка</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
   </body>
 </html>
