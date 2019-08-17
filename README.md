@@ -29,7 +29,7 @@ gunicorn server:app
 
 ## Примеры запуска скрипта
 
-
+![alt text](http://ipic.su/img/img7/fs/cinemas_heroku.1566026511.png)
 
 ## Цели проекта
 
